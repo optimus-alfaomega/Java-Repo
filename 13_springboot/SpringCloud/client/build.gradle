@@ -1,0 +1,37 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '2.1.12.RELEASE'
+}
+
+application {
+    mainClassName = 'io.github.picodotdev.blogbitix.springcloud.client.Main'
+}
+
+dependencies {
+    implementation(platform('org.springframework.boot:spring-boot-dependencies:2.1.12.RELEASE'))
+    implementation(platform('org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2'))
+
+    // Spring
+    def excludeSpringBootStarterLogging = { exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-logging') }
+    implementation('org.springframework.boot:spring-boot-starter', excludeSpringBootStarterLogging)
+    implementation('org.springframework.boot:spring-boot-starter-web', excludeSpringBootStarterLogging)
+    implementation('org.springframework.boot:spring-boot-starter-log4j2', excludeSpringBootStarterLogging)
+    implementation('org.springframework.boot:spring-boot-starter-actuator', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-config', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-ribbon', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-sleuth', excludeSpringBootStarterLogging)
+
+    implementation('io.github.resilience4j:resilience4j-spring-boot2:0.17.0', excludeSpringBootStarterLogging)
+    implementation('io.github.resilience4j:resilience4j-timelimiter:0.17.0', excludeSpringBootStarterLogging)
+    implementation('io.micrometer:micrometer-registry-prometheus:1.1.5')
+
+    implementation('org.glassfish.jersey.core:jersey-client:2.27')
+    implementation('org.glassfish.jersey.inject:jersey-hk2:2.27')
+
+    runtimeOnly('com.google.code.gson:gson:2.8.5')
+    runtimeOnly('com.fasterxml.jackson.core:jackson-databind:2.9.6')
+    runtimeOnly('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.6')
+}

@@ -1,0 +1,24 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '2.1.12.RELEASE'
+}
+
+application {
+    mainClassName = 'io.github.picodotdev.blogbitix.springcloud.discoveryserver.Main'
+}
+
+dependencies {
+    implementation(platform('org.springframework.boot:spring-boot-dependencies:2.1.12.RELEASE'))
+    implementation(platform('org.springframework.cloud:spring-cloud-dependencies:Greenwich.SR2'))
+    
+    // Spring
+    def excludeSpringBootStarterLogging = { exclude(group: 'org.springframework.boot', module: 'spring-boot-starter-logging') }
+    implementation('org.springframework.boot:spring-boot-starter', excludeSpringBootStarterLogging)
+    implementation('org.springframework.boot:spring-boot-starter-web', excludeSpringBootStarterLogging)
+    implementation('org.springframework.boot:spring-boot-starter-log4j2', excludeSpringBootStarterLogging)
+    implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server', excludeSpringBootStarterLogging)
+
+    runtimeOnly('com.google.code.gson:gson:2.8.5')
+    runtimeOnly('com.fasterxml.jackson.core:jackson-databind:2.9.6')
+    runtimeOnly('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.9.6')
+}

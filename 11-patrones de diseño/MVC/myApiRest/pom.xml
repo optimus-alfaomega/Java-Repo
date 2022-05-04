@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.javaen</groupId>
+	<artifactId>myApiRest</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>myApiRest Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+
+	<properties>
+
+		<spring.version>4.1.6.RELEASE</spring.version>
+
+		<junit.version>4.12</junit.version>
+		<swagger.springmvc.version>1.0.2</swagger.springmvc.version>
+		<springframework.boot.version>1.2.5.RELEASE</springframework.boot.version>
+
+		<!-- <maven.compiler.source>1.8</maven.compiler.source> 
+		     <maven.compiler.target>1.8</maven.compiler.target> -->
+	</properties>
+
+
+
+	<dependencies>
+
+		<!-- Servlet inicio -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- Spring [INICIO] -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- <dependency> 
+			<groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-web</artifactId> 
+			<version>${springframework.boot.version}
+			</version>
+			 </dependency> -->
+
+
+
+		<!-- swagger -->
+		<dependency>
+			<groupId>com.mangofactory</groupId>
+			<artifactId>swagger-springmvc</artifactId>
+			<version>${swagger.springmvc.version}</version>
+		</dependency>
+
+
+		<!-- logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+
+	<build>
+		<finalName>myApiRest</finalName>
+
+
+
+		<plugins>
+
+
+
+			<!-- <plugin> <groupId>org.springframework.boot</groupId>
+			 <artifactId>spring-boot-maven-plugin</artifactId> 
+				</plugin> -->
+
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+
+				<configuration>
+
+					<server>localhost</server>
+					<url>http://localhost:8080/manager/text</url>
+					<path>/myApiRest</path>
+					<port>8080</port>
+					<username>admin</username>
+					<password>admin</password>
+					<warfile>target\myApiRest.war</warfile>
+					<update>false</update>
+				</configuration>
+
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.7.v20160115</version>
+
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/myApiRest</contextPath>
+					</webApp>
+					<httpConnector>
+						<port>8080</port>
+					</httpConnector>
+				</configuration>
+
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+
+
+
+
+	</build>
+
+</project>
